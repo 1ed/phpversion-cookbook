@@ -90,8 +90,6 @@ Vagrant.configure("2") do |config|
 
     chef.run_list = [
         "recipe[apt]",
-        "recipe[apache2]",
-        "recipe[nginx]",
         "recipe[phpversion]"
     ]
   end

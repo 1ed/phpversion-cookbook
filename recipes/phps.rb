@@ -119,7 +119,8 @@ Array(node[:phpversion][:phps]).each do |version, php|
   # install extensions
   extensions.each do |extension|
     if extension.is_a?(Hash)
-      php_pear extension['name'] do
+      php_pear "php-#{version}-#{extension['name']}" do
+        package_name    extension['name']
         version         extension['version']         if extension['version']
         channel         extension['channel']         if extension['channel']
         options         extension['options']         if extension['options']
@@ -127,10 +128,12 @@ Array(node[:phpversion][:phps]).each do |version, php|
         zend_extensions extension['zend_extensions'] if extension['zend_extensions']
         preferred_state extension['preferred_state'] if extension['preferred_state']
         action          extension['action']          if extension['action']
-        notifies :restart, "service[apache2]"        if configure_options.include? "--with-apxs"
+#        notifies :restart, "service[apache2]"        if configure_options.include? "--with-apxs"
       end
     else
-      php_pear extension
+      php_pear "php-#{version}-#{extension}" do
+        package_name extension
+      end
     end
   end
 end
