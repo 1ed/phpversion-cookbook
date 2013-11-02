@@ -291,10 +291,6 @@ default[:phpversion][:phps] = {
     'config_directives' => {},
     'extensions' => [
       {
-        'name' => 'xdebug',
-        'zend_extensions' => ['xdebug.so'],
-      },
-      {
         'name' => 'apc',
         'directives' => {:shm_size => '128M', :enable_cli => 1},
       },
@@ -387,10 +383,6 @@ default[:phpversion][:phps] = {
     }.join(' '),
     'config_directives' => {},
     'extensions' => [
-      {
-        'name' => 'xdebug',
-        'zend_extensions' => ['xdebug.so'],
-      },
       {
         'name' => 'apc',
         'directives' => {:shm_size => '128M', :enable_cli => 1},
